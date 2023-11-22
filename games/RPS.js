@@ -8,17 +8,36 @@ function playOneRound() {
 	let playerChoice= prompt("what is your choice").toLowerCase();
 	let computerChoice = chooseForComputer();
 	if (playerChoice == computerChoice) {
-		return alert(`This time is a draw. You  chose ${playerChoice} and computer chose ${computerChoice}`)
+		alert(`This time is a draw. You  chose ${playerChoice} and computer chose ${computerChoice}. Current score is ${playerScore} versus ${computerScore}`)
 	} else if ((playerChoice === "rock") & (computerChoice === "scissors")) {
-		return alert(`you won. ${playerChoice} bits ${computerChoice}.`);
+		playerScore ++
+		alert(`you won. ${playerChoice} bits ${computerChoice}. score is ${playerScore} versus ${computerScore}`); 
 	} else if ((playerChoice === "rock") & (computerChoice === "paper")) {
-		return alert(`sorry ${computerChoice} bits ${playerChoice}`)
+		computerScore ++
+		alert(`sorry ${computerChoice} bits ${playerChoice} current score is ${playerScore} versus ${computerScore}`)
 	} else if ((playerChoice === "paper") & (computerChoice === "rock")) {
-		return alert(`you won. ${playerChoice} bits ${computerChoice}`)
+		playerScore ++
+		alert(`you won. ${playerChoice} bits ${computerChoice} current score is ${playerScore} versus ${computerScore}`)
 	} else if ((playerChoice === "paper") & (computerChoice === "scissors")) {
-		return alert(`sorry ${computerChoice} bits ${playerChoice}`)
+		computerScore ++
+		alert(`sorry ${computerChoice} bits ${playerChoice}. Current score is ${playerScore} versus ${computerScore}.`)
+	} else if ((playerChoice === "scissors") & (computerChoice === "paper")) {
+		playerScore ++;
+		alert(`you won ${playerChoice} bits ${computerChoice}. current score is ${playerScore} versus ${computerScore}`);
+	} else if ((playerChoice === "scissors") & (computerChoice === "rock")) {
+		computerScore ++;
+		alert(`you lost. ${playerChoice} is beaten by ${computerChoice}. Current score is ${playerScore} versus ${computerScore}`)
 	} else {
-		return alert(`something is wrong. ${playerChoice} and ${computerChoice} doesn't work`)
-	}};
-
-	  start.addEventListener("click", playOneRound);
+		alert(`something is wrong. ${playerChoice} and ${computerChoice} doesn't work`)
+	}
+return [playerScore, computerScore];
+};
+function play() {
+	playerScore = 0;
+	computerScore = 0
+	while ((playerScore  < 5) & (computerScore < 5)) {
+		playOneRound();
+	}
+	alert(`game is over. Current score is ${playerScore} versus ${computerScore}.`);
+	}
+start.addEventListener("click", play);
